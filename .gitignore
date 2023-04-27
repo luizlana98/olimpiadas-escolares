@@ -1,4 +1,5 @@
 # compiled output
+/Dist
 /dist
 /node_modules
 
@@ -6,7 +7,6 @@
 logs
 *.log
 npm-debug.log*
-pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
@@ -27,9 +27,19 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
+# Temporary Files
+/.envs/*
+.env
+.envs/
+.npmrc
+
+# Yalc
+yalc.lock
+.yalc
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
+!.vscode/extensions.json 
