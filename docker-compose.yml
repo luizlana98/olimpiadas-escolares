@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  database_prefeitura:
+    image: postgres
+    container_name: database_prefeitura
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=teste
+      - POSTGRES_PASSWORD=teste123
+      - POSTGRES_DB=prefeitura
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    build: .
+    container_name: prefeitura
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src
+    links:
+      - database_prefeitura
+    depends_on:
+      - database_prefeitura
+volumes:
+  pgdata:
+    driver: local
