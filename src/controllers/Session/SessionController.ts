@@ -10,6 +10,6 @@ export class SessionController {
 
   @Post('/login')
   async login(@Body(JoiPipe) loginDTO: LoginValidationDTO): Promise<ResponseDTO> {
-    return new ResponseDTO(HttpStatus.OK, 'Login successfuly', {})
+    return new ResponseDTO(HttpStatus.OK, 'Login successfulay', {})
   }
 }
