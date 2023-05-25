@@ -1,16 +1,15 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, HttpStatus, Post } from '@nestjs/common'
 import { AppService } from 'src/services/app.service'
-import {JoiPipe}from 'nestjs-joi'
+import { JoiPipe } from 'nestjs-joi'
 import { LoginValidationDTO } from 'src/dtos/validation/LoginValidationDTO'
-
+import { ResponseDTO } from 'src/dtos/ResponseDTO'
 
 @Controller()
 export class SessionController {
   constructor(private readonly appService: AppService) {}
 
   @Post('/login')
-  login(@Body(JoiPipe) loginDTO: LoginValidationDTO ): string {
-    console.log(loginDTO)
-    return 'Logado'
+  async login(@Body(JoiPipe) loginDTO: LoginValidationDTO): Promise<ResponseDTO> {
+    return new ResponseDTO(HttpStatus.OK, 'Login successfulay', {})
   }
 }
