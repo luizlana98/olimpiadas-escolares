@@ -1,30 +1,18 @@
-version: '3.7'
-
+version: '3.3'
 services:
-  database_prefeitura:
-    image: postgres
-    container_name: database_prefeitura
+  db:
+    image: mysql:5.7
     restart: always
-    ports:
-      - 5432:5432
     environment:
-      - POSTGRES_USER=teste
-      - POSTGRES_PASSWORD=teste123
-      - POSTGRES_DB=prefeitura
-    volumes:
-      - pgdata:/data/postgres
-
-  app:
-    build: .
-    container_name: prefeitura
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      - 3000:3000
+      - '3306:3306'
+    expose:
+      - '3306'
     volumes:
-      - .:/usr/src
-    links:
-      - database_prefeitura
-    depends_on:
-      - database_prefeitura
+      - my-db:/var/lib/mysql
 volumes:
-  pgdata:
-    driver: local
+  my-db:
