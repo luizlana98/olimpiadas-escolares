@@ -1,0 +1,135 @@
+Atleta
+
+
+-- Table: public.atleta
+
+-- DROP TABLE IF EXISTS public.atleta;
+
+CREATE TABLE IF NOT EXISTS public.atleta
+(
+    school_id character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    validation_token character varying(50) COLLATE pg_catalog."default",
+    role character varying(20) COLLATE pg_catalog."default" NOT NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.atleta
+    OWNER to teste;
+
+
+Equipe
+
+-- Table: public.equipe
+
+-- DROP TABLE IF EXISTS public.equipe;
+
+CREATE TABLE IF NOT EXISTS public.equipe
+(
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.equipe
+    OWNER to teste;
+
+Escolas
+
+-- Table: public.escolas
+
+-- DROP TABLE IF EXISTS public.escolas;
+
+CREATE TABLE IF NOT EXISTS public.escolas
+(
+    id character varying(50) COLLATE pg_catalog."default",
+    name character varying(100) COLLATE pg_catalog."default",
+    identification_document character varying(100) COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.escolas
+    OWNER to teste;
+
+Estudantes
+
+-- Table: public.estudantes
+
+-- DROP TABLE IF EXISTS public.estudantes;
+
+CREATE TABLE IF NOT EXISTS public.estudantes
+(
+    name character varying(100) COLLATE pg_catalog."default",
+    identification_document character varying(30) COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.estudantes
+    OWNER to teste;
+
+Eventos
+
+-- Table: public.eventos
+
+-- DROP TABLE IF EXISTS public.eventos;
+
+CREATE TABLE IF NOT EXISTS public.eventos
+(
+    modalidade_id integer,
+    start timestamp without time zone,
+    "end" timestamp without time zone,
+    resgistration_start timestamp without time zone,
+    registration_end timestamp without time zone
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.eventos
+    OWNER to teste;
+
+Modalidades
+
+-- Table: public.modalidade
+
+-- DROP TABLE IF EXISTS public.modalidade;
+
+CREATE TABLE IF NOT EXISTS public.modalidade
+(
+    nome character varying(100) COLLATE pg_catalog."default",
+    min_atletas integer,
+    max_atletas integer,
+    id character varying(100) COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.modalidade
+    OWNER to teste;
+
+ALTER TABLE IF EXISTS public.modalidade
+    ALTER COLUMN nome SET STATISTICS 100;
+
+registros
+
+-- Table: public.registros
+
+-- DROP TABLE IF EXISTS public.registros;
+
+CREATE TABLE IF NOT EXISTS public.registros
+(
+    student_id integer NOT NULL,
+    event_id character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying(50) COLLATE pg_catalog."default",
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone,
+    CONSTRAINT inscricao_pkey PRIMARY KEY (student_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.registros
+    OWNER to teste;
